@@ -1,0 +1,208 @@
+/* Card base styling */
+.uno-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  box-sizing: border-box;
+  user-select: none;
+  border: 2px solid #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  transition: all 0.30s cubic-bezier(0.25, 0.8, 0.25, 1);
+  outline: none;
+  background-clip: padding-box;
+  overflow: hidden;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sizing definitions */
+.uno-card-sm {
+  width: 64px;
+  height: 96px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+.uno-card-md {
+  width: 96px;
+  height: 144px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.uno-card-lg {
+  width: 128px;
+  height: 192px;
+  border-radius: 16px;
+  font-size: 18px;
+}
+
+/* Color gradients */
+.uno-card-red {
+  background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
+  border-color: #ffb5a7;
+  color: #c9184a;
+}
+
+.uno-card-green {
+  background: linear-gradient(135deg, #2ec4b6 0%, #0f9f90 100%);
+  border-color: #cbf3f0;
+  color: #0f9f90;
+}
+
+.uno-card-blue {
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+  border-color: #90e0ef;
+  color: #0077b6;
+}
+
+.uno-card-yellow {
+  background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+  border-color: #ffe3a8;
+  color: #d46a00;
+}
+
+/* Custom 4-color Wild Card gradient diagonal style */
+.uno-card-wild {
+  background: linear-gradient(135deg, 
+    #ff4d6d 0%, #ff4d6d 25%, 
+    #ffb703 25%, #ffb703 50%, 
+    #2ec4b6 50%, #2ec4b6 75%, 
+    #00b4d8 75%, #00b4d8 100%
+  );
+  border-color: #ffffff;
+}
+
+/* Card back styling */
+.uno-card-back {
+  background: linear-gradient(135deg, #7a0010 0%, #3a0007 100%);
+  border-color: #ffffff;
+  cursor: default;
+}
+
+.uno-card-back::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
+}
+
+.uno-card-back-inner {
+  width: 82%;
+  height: 82%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 77, 109, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-15deg);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.uno-card-back-logo {
+  color: #ffb703;
+  font-size: 1.8em;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 2px;
+  transform: rotate(15deg);
+  text-shadow: 0 4px 8px rgba(251, 133, 0, 0.6), 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+/* Card states */
+.uno-card-playable {
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+
+.uno-card-playable:hover {
+  transform: translateY(-16px) scale(1.06) rotate(var(--hover-rotation, 0deg));
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 15px 30px rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+.uno-card-playable:active {
+  transform: translateY(-8px) scale(0.95);
+}
+
+.uno-card-unplayable {
+  opacity: 0.75;
+  cursor: default;
+}
+
+/* Corner labels */
+.uno-card-corner {
+  align-self: flex-start;
+  font-size: 0.9em;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+}
+
+.uno-card-corner-bottom {
+  align-self: flex-end;
+  transform: rotate(180deg);
+}
+
+/* Inner oval */
+.uno-card-inner-oval {
+  width: 78%;
+  height: 60%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-20deg);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.uno-card-inner-oval-standard {
+  background-color: #ffffff;
+}
+
+.uno-card-inner-oval-wild {
+  background-color: #1e1e24;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.uno-card-center-val {
+  font-size: 2.2em;
+  font-weight: 900;
+  font-style: italic;
+  transform: rotate(20deg);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uno-card-wild-text {
+  background: linear-gradient(90deg, #ff4d6d, #ffb703, #2ec4b6, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.uno-card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  animation: uno-pulse-glow 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes uno-pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    opacity: 0.8;
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+}
