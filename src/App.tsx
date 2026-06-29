@@ -522,7 +522,7 @@ export const App: React.FC = () => {
   const handlePlayCard = (cardId: string, chosenColor?: string) => {
     // Check if card is a jump-in play
     const me = roomState?.players.find((p: any) => p.id === socket?.id);
-    const isMyTurn = roomState?.gameState?.players[roomState?.gameState?.currentTurn]?.id === socket?.id;
+    const isMyTurn = roomState?.players[roomState?.gameState?.currentTurn]?.id === socket?.id;
     if (me && !isMyTurn && roomState?.settings?.jumpInEnabled) {
       socket?.emit('jumpIn', { roomCode, cardId, chosenColor });
     } else {

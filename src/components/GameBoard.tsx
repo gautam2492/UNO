@@ -116,7 +116,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({
   // Find user details
   const me = players.find(p => p.id === currentUserSocketId);
   const myCards = me?.cards || [];
-  const isMyTurn = gameState.players[gameState.currentTurn]?.id === currentUserSocketId;
+  const isMyTurn = players[gameState.currentTurn]?.id === currentUserSocketId;
 
   // Rearrange seating clockwise from user
   const myIndex = players.findIndex(p => p.id === currentUserSocketId);
@@ -238,7 +238,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({
           const leftPercent = 50 + 43 * Math.cos(angle);
           const topPercent = 45 - 38 * Math.sin(angle);
 
-          const isOpponentTurn = gameState.players[gameState.currentTurn]?.id === opponent.id;
+          const isOpponentTurn = players[gameState.currentTurn]?.id === opponent.id;
           const isVulnerable = opponent.cardCount === 1 && !gameState.unoCalls[opponent.id];
 
           return (
