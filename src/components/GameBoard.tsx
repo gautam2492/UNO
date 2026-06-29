@@ -90,7 +90,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({
   const [isDrawnPlayableCardWild, setIsDrawnPlayableCardWild] = useState(false);
 
   // Play card sound on top card changes
-  const topCardId = gameState.discardPile[gameState.discardPile.length - 1]?.id;
+  const topCardId = gameState?.discardPile?.[gameState?.discardPile?.length - 1]?.id;
   useEffect(() => {
     if (topCardId) {
       playCardSound();
@@ -98,12 +98,20 @@ export const GameBoard: React.FC<GameBoardProps> = ({
   }, [topCardId]);
 
   // Play UNO sound on call count updates
-  const unoCallsCount = Object.keys(gameState.unoCalls).length;
+  const unoCallsCount = gameState?.unoCalls ? Object.keys(gameState.unoCalls).length : 0;
   useEffect(() => {
     if (unoCallsCount > 0) {
       playUnoSound();
     }
   }, [unoCallsCount]);
+
+  if (!gameState || !gameState.discardPile) {
+    return (
+      <div className="lobby-container">
+        <div style={{ color: 'var(--text-secondary)' }}>Loading game table...</div>
+      </div>
+    );
+  }
 
   // Find user details
   const me = players.find(p => p.id === currentUserSocketId);
