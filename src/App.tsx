@@ -18,9 +18,17 @@ interface EmojiObject {
   emoji: string;
 }
 
-const SOCKET_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3000' 
-  : window.location.origin;
+const getSocketUrl = () => {
+  const params = new URLSearchParams(window.location.search);
+  const serverParam = params.get('server');
+  if (serverParam) return serverParam;
+  
+  return (window.location.hostname === 'localhost' || window.location.hostname.endsWith('github.io'))
+    ? 'http://localhost:3000' 
+    : window.location.origin;
+};
+
+const SOCKET_URL = getSocketUrl();
 
 export const App: React.FC = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
